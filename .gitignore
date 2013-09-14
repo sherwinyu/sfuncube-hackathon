@@ -20,3 +20,5 @@
 /spec/tmp
 
 /public/assets/source_maps
+
+notes.js.coffee

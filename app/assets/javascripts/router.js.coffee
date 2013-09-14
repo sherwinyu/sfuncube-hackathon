@@ -1,8 +1,7 @@
 # For more information see: http://emberjs.com/guides/routing/
 
 SfuncubeHackathon.Router.map ()->
-  # @resource('posts')
-  @resource 'referral'
+  @resource 'referral', ->
     @route 'new'
 SfuncubeHackathon.ReferralRoute = Ember.Route.extend
   activate: ->
