@@ -12,7 +12,7 @@
 #
 #= require jquery
 #= require jquery_ujs
-#= require handlebars
+#= require handlebars.js
 #= require ember
 #= require ember-data
 #= require_self
