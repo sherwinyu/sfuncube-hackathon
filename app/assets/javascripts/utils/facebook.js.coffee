@@ -1,3 +1,25 @@
+class Friend
+  name: ""
+  data: ""
+  ###
+      user:
+        name: friendPayload.name
+        email: friendPayload.email
+        info:
+          uid: friendPayload.id
+          name: friendPayload.name
+          email: friendPayload.email
+          provider: "FACEBOOK"
+          other_info: friendPayload
+  ###
+  pictureUrl: ""
+
+  constructor: (friendPayload) ->
+    @data = friendPayload
+    @name = friendPayload?.name
+    @pictureUrl = friendPayload?.picture?.data?.url
+    @location = friendPayload?.location?.name
+
 SfuncubeHackathon.FriendFilter = Ember.Object.extend
   # filterAndRankAgainst -- public entry point for friendFilter
   # Behavior:
@@ -7,8 +29,14 @@ SfuncubeHackathon.FriendFilter = Ember.Object.extend
   # param term: a string indicating what to search against
   filterAndRankAgainst: (term) ->
     dfd = new $.Deferred
-    dfd.resolve( [1,2,3,4,5,6] )
+    dfd.resolve( [Math.random(), Math.random(), Math.random()  ])
     dfd
+
+  facebookFriends: ->
+    @_friends ||= facebook.query("/me/friends?fields=name,picture,location").then (friendPayloads) =>
+      friendPayloads.data.map (friendPayload) =>
+        new Friend(friendPayload)
+
 
 jQuery ->
    $('body').prepend('<div id="fb-root"></div>')
