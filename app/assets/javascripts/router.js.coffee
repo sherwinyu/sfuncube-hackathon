@@ -9,8 +9,7 @@ SfuncubeHackathon.ReferralRoute = Ember.Route.extend
 
 SfuncubeHackathon.IndexRoute = Ember.Route.extend
   activate: ->
-    debugger
-  actions:
-    lumparound: ->
-      debugger
 
+  actions:
+    login: ->
+      facebook.login()
