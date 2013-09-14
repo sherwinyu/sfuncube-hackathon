@@ -1,3 +1,6 @@
 {{view Ember.TextField class="recipient-name-or-email" id="name-or-email" valueBinding="view.query"}}
 <br>
 Friends:
+{{#each friend in view._rankedFriends}}
+friend: {{friend}}<br>
+{{/each}}
