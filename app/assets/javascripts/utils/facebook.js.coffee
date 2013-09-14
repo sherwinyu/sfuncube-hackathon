@@ -1,4 +1,4 @@
-class Friend
+class Friend extends Ember.Object
   name: ""
   data: ""
   ###
@@ -20,21 +20,42 @@ class Friend
     @pictureUrl = friendPayload?.picture?.data?.url
     @location = friendPayload?.location?.name
 
+  # param term string -- the search term
+  # returns integer rank
+  scoreAgainstTerm: (term)->
+    terms = term.trim().split(/\s+/)
+    # regexs is an array of regular expressions matching for the beginning of
+    regexs = (new RegExp "\\b#{term}", "i" for term in terms)
+    # check to see how many of the regexs match
+    filtered = regexs.filter (regex) => regex.test @name
+    # return that as the score
+    filtered.length
+    @set 'score', filtered.length
+    filtered.length
+
 SfuncubeHackathon.FriendFilter = Ember.Object.extend
   # filterAndRankAgainst -- public entry point for friendFilter
   # Behavior:
   #   1) it calls _filterAndRank with the friendSource and the curried scoring function
   # Context:
   #   Currently, is called by SelectRecipientView in the `source` autocomplete function.
+  #
   # param term: a string indicating what to search against
+  # returns: a promise of a list of friends
   filterAndRankAgainst: (term) ->
-    dfd = new $.Deferred
-    dfd.resolve( [Math.random(), Math.random(), Math.random()  ])
-    dfd
+    @_filterAndRank( @facebookFriends(), term)
+
+  # Returns a promise of an array of friends
+  _filterAndRank: (pfriends, term) ->
+    pfriends.then (friends) =>
+      # friends is an array of Friend
+      friends = friends.sort (a, b) ->
+        b.scoreAgainstTerm(term) - a.scoreAgainstTerm(term)
+      friends.slice(0, 6)
 
   facebookFriends: ->
     @_friends ||= facebook.query("/me/friends?fields=name,picture,location").then (friendPayloads) =>
-      friendPayloads.data.map (friendPayload) =>
+      derp = friendPayloads.data.map (friendPayload) =>
         new Friend(friendPayload)
 
 
@@ -56,7 +77,6 @@ window.facebook =
     dfd = new $.Deferred()
     FB.login ((response) ->
       if response.authResponse
-        debugger
         console.log "User did auth"
         dfd.resolve(response)
       else
@@ -72,7 +92,6 @@ window.facebook =
   query: (query) ->
     dfd = new $.Deferred()
     FB.api query, (response) ->
-      debugger
       dfd.resolve(response)
     dfd.promise()
 
