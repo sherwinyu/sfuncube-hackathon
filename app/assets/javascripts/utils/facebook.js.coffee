@@ -8,6 +8,7 @@ jQuery ->
     cache: 'true'
 
 window.facebook =
+  scope: 'email, user_education_history, user_interests, user_likes, user_activities, friends_status, user_status, friends_about_me, friends_activities, friends_education_history, friends_interests, friends_location, friends_religion_politics'
   unwrap: (dfd) ->
     x = null
     dfd.always( (result) -> x = result)
