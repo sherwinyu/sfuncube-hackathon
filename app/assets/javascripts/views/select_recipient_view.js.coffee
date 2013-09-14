@@ -31,12 +31,6 @@ SfuncubeHackathon.SelectRecipientView = Ember.View.extend
     @$("#name-or-email").val friend.user.name
     @get('controller').send 'recipientSelected'
 
-  recipientEmailOrName: ((key, val)->
-    @get('controller.recipient.name')
-  ).property('controller.recipient')
-
-  friendFilterBinding: "controller.friendFilter"
-
 
   didInsertElement: ->
     @initAutocompletion @$('input')
@@ -45,6 +39,8 @@ SfuncubeHackathon.SelectRecipientView = Ember.View.extend
 
   init: ->
     @set('_rankedFriends', [])
+
+    @set('friendFilter', lu 'friendFilter:main')
     @_super()
 
   initAutocompletion: ($el) ->

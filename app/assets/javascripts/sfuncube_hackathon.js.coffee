@@ -8,3 +8,6 @@
 #= require_tree ./routes
 #= require ./router
 #= require_self
+
+SfuncubeHackathon.register('friendFilter:main', SfuncubeHackathon.FriendFilter)
+SfuncubeHackathon.inject('view:selectRecipient', 'friendFilter', 'friendFilter:main') #SfuncubeHackathon.FriendFilter)

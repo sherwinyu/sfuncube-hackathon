@@ -1,4 +1,14 @@
-SfuncubeHackathon.FriendFilter = Ember.Object.extend()
+SfuncubeHackathon.FriendFilter = Ember.Object.extend
+  # filterAndRankAgainst -- public entry point for friendFilter
+  # Behavior:
+  #   1) it calls _filterAndRank with the friendSource and the curried scoring function
+  # Context:
+  #   Currently, is called by SelectRecipientView in the `source` autocomplete function.
+  # param term: a string indicating what to search against
+  filterAndRankAgainst: (term) ->
+    dfd = new $.Deferred
+    dfd.resolve( [1,2,3,4,5,6] )
+    dfd
 
 jQuery ->
    $('body').prepend('<div id="fb-root"></div>')
