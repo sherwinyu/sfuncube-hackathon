@@ -1,0 +1,133 @@
+
+//=============== BASE
+.main, body {
+  background: $fabric;
+}
+
+h2 {
+  text-align: center;
+}
+
+//================= OVER RIDES
+
+.main a {
+  color: $accent-teal;
+}
+.main input, textarea {
+  box-shadow: $inset-chiseled;
+  border: none;
+  &:focus {
+    box-shadow: $teal-glow;
+  }
+  &.invalid:focus {
+    box-shadow: $red-glow;
+  }
+  &.invalid {
+    background: lighten($soft-red, 14%);
+    box-shadow: $inset-chiseled-red;
+  }
+}
+span.invalid-helper {
+  display: none;
+  &.invalid {
+    display: inline;
+    font-weight: bold;
+    color: $soft-red;
+  }
+}
+
+//================ AUTO COMPLETE
+.ui-autocomplete {
+  display:none !important;
+}
+
+.ui-helper-hidden-accessible {
+  display: none;
+}
+
+li.ui-menu-item {
+  list-style: none;
+  a {
+    background: whitesmoke;
+  }
+}
+
+
+/*
+ * Utils
+ */
+.circle-small {
+  border-radius: 50%;
+  width: 290px;
+  height: 280px;
+  top: -228px;
+  position: relative;
+
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.75) 59%, $light-teal3 98%);
+  border: 1px desaturate($light-teal1, 5%) solid
+}
+
+/*
+ * Banner
+ */
+.banner {
+  height: $banner-height;
+  background: $fabric;// image-url('fabric.png');// $light-white;
+}
+.powered-by {
+  display: none;
+  position: absolute;
+  bottom: 0px;
+}
+.main-logo {
+  width: 130px;
+}
+
+.client-logo {
+  height: 70px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.banner a.logo {
+  margin-left: auto;
+  margin-right: auto;
+  display: table;
+  z-index: 1;
+  position: relative;
+  top: -280px; // top: -194%;
+}
+
+.logo {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  z-index: 1;
+  position: relative;
+  top: -184%;
+}
+/*
+ *  Notifications
+ */
+.notifications {
+  margin: auto;
+  @extend .span8;
+}
+
+/*
+ *  Instructions
+ */
+
+/*
+ *  Referral
+ */
+
+.referral {
+  width: 100%;
+  box-shadow: 0px 5px 5px rgba(black, 0.5);
+  position: relative;
+  z-index: 3;
+}
+
+
