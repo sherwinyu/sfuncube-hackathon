@@ -1,4 +1,5 @@
 SfuncubeHackathon.SelectRecipientView = Ember.View.extend
+  classNames: ["select-recipient"]
   templateName: "select_recipient"
   _rankedFriends: null
   query: ""
@@ -8,10 +9,6 @@ SfuncubeHackathon.SelectRecipientView = Ember.View.extend
     addFriend: (friend)->
       @set('selectedFriends', []) unless @get('selectedFriends')
       @get('selectedFriends').pushObject(friend)
-    postToTimeline: ->
-      opts =
-        friendIds: @get('selectedFriends').map( (friend) -> friend.data.id)
-      facebook.solarStory(opts)
 
 
   displayingFriends: (->

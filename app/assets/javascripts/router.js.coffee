@@ -13,3 +13,8 @@ SfuncubeHackathon.IndexRoute = Ember.Route.extend
   actions:
     login: ->
       facebook.login()
+
+    postToTimeline: ->
+      opts =
+        friendIds: @get('selectedFriends').map( (friend) -> friend.data.id)
+      facebook.solarStory(opts)
