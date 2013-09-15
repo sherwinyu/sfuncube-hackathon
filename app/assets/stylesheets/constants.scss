@@ -1,0 +1,63 @@
+$orange: #fbeed5;
+$red: rgb(255, 100, 100);
+$soft-red: lighten($red, 10%);
+
+$accent-blue: #326bb0;
+$light-blue1: lighten($accent-blue, 10%);
+$light-blue2: lighten($accent-blue, 20%);
+$light-blue3: lighten($accent-blue, 30%);
+$shadow-blue: darken($accent-blue, 5%);
+
+$accent-teal: #0faa8f;
+$light-teal1: lighten($accent-teal, 10%);
+$light-teal2: lighten($accent-teal, 20%);
+$light-teal3: lighten($accent-teal, 30%);
+$dim-teal: lighten(desaturate($accent-teal, 25%), 3%);
+$trans-teal: rgba($accent-teal, 0.6);
+$shadow-teal: darken($accent-teal, 5%);
+
+$light-white: #f0f0f0;
+$trans-white: rgba(white, 0.75);
+$accent-gray: #444444;
+$neutral-gray: #777777;
+$trans-gray: rgba($accent-gray, 0.75);
+$light-gray: adjust-lightness($neutral-gray, 40);
+$light-gray2: adjust-lightness($neutral-gray, 50);
+$light-gray3: adjust-lightness($neutral-gray, 60);
+
+$fabric: image-url('fabric.png');
+
+$teal-glow: 0px 0px 1px 1px $trans-teal, inset 0px 0px 2px 2px $trans-teal;
+$red-glow: 0px 0px 1px 1px $soft-red, inset 0px 0px 2px 2px $soft-red;
+$inset-chiseled: 0px 0px 3px $neutral-gray;
+$inset-chiseled-red: 0px 0px 3px $red;
+
+$banner-height: 60px;
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.pane {
+  padding: 45px 0px;
+}
+
+@font-face {
+  font-family: "Source Sans";
+  src: font-url('SourceSansPro-light.otf');
+}
+
+@font-face {
+  font-family: "Univers 45 Light";
+  src: font-url('Univers45light.ttf');
+}
+@font-face {
+  font-family: "Univers 47 Light";
+  src: font-url('Univers47Light.ttf');
+}
+@font-face {
+  font-family: "Univers 67 Condensed Bold";
+  src: font-url('Univers67CondensedBold.ttf');
+}
