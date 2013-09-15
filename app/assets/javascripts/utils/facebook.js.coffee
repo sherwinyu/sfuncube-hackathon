@@ -1,5 +1,6 @@
 class Friend extends Ember.Object
   name: ""
+  firstName: ""
   data: ""
   ###
       user:
@@ -19,6 +20,7 @@ class Friend extends Ember.Object
     @name = friendPayload?.name
     @pictureUrl = friendPayload?.picture?.data?.url
     @location = friendPayload?.location?.name
+    @firstName = @name.split(' ')[0]
 
   # param term string -- the search term
   # returns integer rank
@@ -95,6 +97,10 @@ window.facebook =
       dfd.resolve(response)
     dfd.promise()
 
+  stubSolarStory: ->
+    facebook.solarStory
+      message: "Hey guys, I decided to go with Sunpro Solar after looking after a bunch of options. Sunpro's lifetime warranty was what made the difference for me."
+      friendIds: ["100006568215246", "100006583092043"]
   solarStory: (opts) ->
     opts.solarCompanyId ||= '1388726888024799'
     opts.message ||= "Wala wala!"
@@ -103,6 +109,7 @@ window.facebook =
       "solar company": opts.solarCompanyId
       message: opts.message
       "fb:explicitly_shared": true
+      "og:url": "http://gosunpro.com/why-sunpro/"
     args.tags = opts.friendIds.join(',') if opts.friendIds?
 
     FB.api 'https://graph.facebook.com/me/weave-share:go_solar', 'post', args

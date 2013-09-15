@@ -1,5 +1,6 @@
 SfuncubeHackathon::Application.routes.draw do
   root to: "application#new"
+  match "/sunpro", to: redirect('http://gosunpro.com')
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -10,6 +10,9 @@ SfuncubeHackathon.SelectRecipientView = Ember.View.extend
       @set('selectedFriends', []) unless @get('selectedFriends')
       @get('selectedFriends').pushObject(friend)
 
+    removeFriend: (friend) ->
+      @get('selectedFriends').pushObject(friend)
+      @get('selectedFriends').removeObject(friend)
 
   displayingFriends: (->
     @get('query')?.length > 0

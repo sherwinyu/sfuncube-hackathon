@@ -1,12 +1,25 @@
+<h3 class="selrep">Who should know about Sunpro Solar?</h3>
 {{view Ember.TextField class="recipient-name-or-email" id="name-or-email" valueBinding="view.query"}}
-<br>
-Friends:
-{{#each friend in view._rankedFriends}}
-<a {{action addFriend friend target="view"}}> friend: {{friend.name}}, {{friend.score}}</a> </br>
-{{/each}}
+
+{{#if view.displayedFriends}}
+  <div class="friend-suggestions">
+    {{#each friend in view.displayedFriends}}
+    <div class='friend-suggestion' {{action addFriend friend target="view"}}>
+      <img class="friend-picture" {{bindAttr src='friend.pictureUrl'}}></img>
+      <div class="friend-info">
+        <span class="friend-name"> {{friend.name}} </span> <br>
+        <span class="friend-location"> {{friend.location}} </span>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+
 <br>
 
-Currently selected friends:
+{{#if view.selectedFriends}}
+<h2>Currently selected friends:</h2>
 {{#each friend in view.selectedFriends}}
-  {{friend.name}}
+<span class="existing-friend"> {{friend.firstName}} <a {{action removeFriend friend target="view"}}> x </a> </span>
 {{/each}}
+{{/if}}
