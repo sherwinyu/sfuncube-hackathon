@@ -1,0 +1,21 @@
+<div class="content">
+    <h2 class="step-name">2. Finish your message and send!</h2>
+    <div class="body">
+      <h4 class="step-subheader"> Help your friends understand why you made your purchase at {{copy.clientName}}: add a personalized message!</h4>
+    {{view Ember.TextArea valueBinding="message" class="referral-message"}}
+
+    <h4 class="step-subheader">Why should your friends care? Select a few of the following highlights <b>{{recipientFirstName}}</b> might be interested in.</h4>
+    {{view SfuncubeHackathon.CustomizationsSelectView
+      availableCustomizationsBinding=
+      "availableCustomizations"
+    }}
+    <div class='center'>
+      <h4 class='step-subheader'> What&#039;s {{recipientFirstName}}&#039;s email address?</h4>
+      {{view Ember.TextField class="recipient-email-address" valueBinding="recipient_email" label="Your friend's email address"}}
+    </div>
+  </div>
+  <div class="z-index-container">
+      <a id="deliver-button" class='deliver-button' {{action deliverClicked this}}> <span class="deliver">SEND!</span> </a>
+  </div>
+
+</div>
