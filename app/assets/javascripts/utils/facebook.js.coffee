@@ -67,7 +67,7 @@ jQuery ->
     cache: 'true'
 
 window.facebook =
-  scope: 'email, user_education_history, user_interests, user_likes, user_activities, friends_status, user_status, friends_about_me, friends_activities, friends_education_history, friends_interests, friends_location, friends_religion_politics'
+  scope: 'email, user_education_history, user_interests, user_likes, user_activities, friends_status, user_status, friends_about_me, friends_activities, friends_education_history, friends_interests, friends_location, friends_religion_politics, publish_actions'
   unwrap: (dfd) ->
     x = null
     dfd.always( (result) -> x = result)
@@ -94,6 +94,22 @@ window.facebook =
     FB.api query, (response) ->
       dfd.resolve(response)
     dfd.promise()
+  lumpIt: ->
+    FB.api 'https://graph.facebook.com/me/og.likes', 'post',
+           object: 'http://google.com'
+           privacy:
+             value: 'SELF'
+           ,
+           (response)->
+             if !response
+               alert('Error occurred.')
+             else if (response.error)
+               document.getElementById('result').innerHTML = 'Error: ' + response.error.message
+             else
+               document.getElementById('result').innerHTML =
+                 '<a href=\"https://www.facebook.com/me/activity/' + response.id + '\">' +
+                 'Story created.  ID is ' + response.id + '</a>'
+
 
 window.fbAsyncInit = ->
   FB.init
