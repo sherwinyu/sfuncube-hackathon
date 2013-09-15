@@ -95,38 +95,27 @@ window.facebook =
       dfd.resolve(response)
     dfd.promise()
 
-  mumpIt: ->
-    FB.api 'https://graph.facebook.com/me/weave-share:go_solar', 'post',
-           object: 'http://google.com'
-           "solar company": '1388726888024799'
-           privacy:
-             value: 'SELF'
-           ,
-           (response)->
-             if !response
-               alert('Error occurred.')
-             else if (response.error)
-               document.getElementById('result').innerHTML = 'Error: ' + response.error.message
-             else
-               document.getElementById('result').innerHTML =
-                 '<a href=\"https://www.facebook.com/me/activity/' + response.id + '\">' +
-                 'Story created.  ID is ' + response.id + '</a>'
-  lumpIt: ->
-    FB.api 'https://graph.facebook.com/me/og.likes', 'post',
-           object: 'http://google.com'
-           privacy:
-             value: 'SELF'
-           ,
-           (response)->
-             if !response
-               alert('Error occurred.')
-             else if (response.error)
-               document.getElementById('result').innerHTML = 'Error: ' + response.error.message
-             else
-               document.getElementById('result').innerHTML =
-                 '<a href=\"https://www.facebook.com/me/activity/' + response.id + '\">' +
-                 'Story created.  ID is ' + response.id + '</a>'
+  solarStory: (opts) ->
+    opts.solarCompanyId ||= '1388726888024799'
+    opts.message ||= "Wala wala!"
 
+    args =
+      "solar company": opts.solarCompanyId
+      message: opts.message
+      "fb:explicitly_shared": true
+    args.tags = opts.friendIds.join(',') if opts.friendIds?
+
+    FB.api 'https://graph.facebook.com/me/weave-share:go_solar', 'post', args
+           ,
+           (response)->
+             if !response
+               alert('Error occurred.')
+             else if (response.error)
+               document.getElementById('result').innerHTML = 'Error: ' + response.error.message
+             else
+               document.getElementById('result').innerHTML =
+                 '<a href=\"https://www.facebook.com/me/activity/' + response.id + '\">' +
+                 'Story created.  ID is ' + response.id + '</a>'
 
 window.fbAsyncInit = ->
   FB.init

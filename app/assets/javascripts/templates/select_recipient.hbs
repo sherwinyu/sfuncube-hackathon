@@ -2,5 +2,14 @@
 <br>
 Friends:
 {{#each friend in view._rankedFriends}}
-friend: {{friend.name}}, {{friend.score}} <br>
+<a {{action addFriend friend target="view"}}> friend: {{friend.name}}, {{friend.score}}</a> </br>
 {{/each}}
+<br>
+
+Currently selected friends:
+{{#each friend in view.selectedFriends}}
+  {{friend.name}}
+{{/each}}
+
+<a {{action postToTimeline target="view"}}> Post to timeline </a>
+
