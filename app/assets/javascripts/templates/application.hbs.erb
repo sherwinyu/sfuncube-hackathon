@@ -1,0 +1,16 @@
+<div class="banner">
+  {{outlet "auth_status"}}
+  <div class="circle-small center"> <div class="powered-by">powered by</div> </div>
+  {{#linkTo "index" class="logo"}} <image class="main-logo" src="<%= asset_path('weave_logo.png') %>"></image> {{/linkTo}}
+</div>
+<div class="notifications">
+{{#each notification in notifications}}
+  <div class="alert" {{bindAttr class="notification.type"}}>
+    <button type="button" class="close"  {{action destroyNotification notification}}>&times;</button>
+    {{notification.message}}
+  </div>
+{{/each}}
+</div>
+<image class="client-logo" src="<%= asset_path('logo_sunpro.png') %>"></image>
+{{view SfuncubeHackathon.SelectRecipientView}}
+{{view SfuncubeHackathon.EditMessageView}}

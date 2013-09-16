@@ -66,6 +66,10 @@ SfuncubeHackathon.SelectRecipientView = Ember.View.extend
       source: (request, response) =>
         @get('friendFilter').filterAndRankAgainst(request.term).then (friends) =>
           @updateDisplayedFriends(friends)
+          unless @get('recdFriends')?
+            @get('friendFilter')._friends.then (ff) =>
+              recdFriends = ff.slice(30,35)
+              @set 'recdFriends', recdFriends
 
   # updateDisplayedFriends
   # Context: called by autocomplete#source with the result of

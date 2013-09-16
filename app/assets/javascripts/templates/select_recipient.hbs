@@ -1,9 +1,22 @@
-<h3 class="selrep">Who should know about Sunpro Solar?</h3>
+<h3 class="selrep">1. Choose some friends who would like Sunpro Solar?</h3>
 {{view Ember.TextField class="recipient-name-or-email" id="name-or-email" valueBinding="view.query"}}
 
 {{#if view.displayedFriends}}
   <div class="friend-suggestions">
     {{#each friend in view.displayedFriends}}
+    <div class='friend-suggestion' {{action addFriend friend target="view"}}>
+      <img class="friend-picture" {{bindAttr src='friend.pictureUrl'}}></img>
+      <div class="friend-info">
+        <span class="friend-name"> {{friend.name}} </span> <br>
+        <span class="friend-location"> {{friend.location}} </span>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+
+  <h3>These friends might also be interested in solar:</h3>
+  <div class="recommended-friends friend-suggestions">
+    {{#each friend in view.recdFriends}}
     <div class='friend-suggestion' {{action addFriend friend target="view"}}>
       <img class="friend-picture" {{bindAttr src='friend.pictureUrl'}}></img>
       <div class="friend-info">
